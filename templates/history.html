@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>История куста "{{ plant.name }}"</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Comfortaa&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comfortaa', sans-serif;
+            background: #f7f3fa;
+            color: #333;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-family: 'Amatic SC', cursive;
+            font-size: 3.2rem;
+            color: #8e44ad;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: #9b59b6;
+            text-decoration: none;
+            font-family: 'Pacifico', cursive;
+            font-size: 1.1rem;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .reflection-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0;
+            list-style: none;
+        }
+
+        .reflection-item {
+            background: #ffffffee;
+            border-left: 5px solid #8e44ad;
+            border-radius: 8px;
+            margin-bottom: 1.2rem;
+            padding: 1rem 1.2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .reflection-date {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+
+        .reflection-question {
+            font-weight: bold;
+            color: #5e3370;
+            margin-bottom: 0.3rem;
+        }
+
+        .reflection-answer {
+            margin-top: 0.2rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>История рефлексии: {{ plant.name }}</h1>
+    <div style="text-align:center;">
+        <a href="/">← Назад к кустам</a>
+    </div>
+    <ul class="reflection-list">
+        {% for question, answer, created_at in reflections %}
+        <li class="reflection-item">
+            <div class="reflection-date">{{ created_at.strftime('%d.%m.%Y %H:%M') }}</div>
+            <div class="reflection-question">Вопрос: {{ question }}</div>
+            <div class="reflection-answer">Ответ: {{ answer }}</div>
+        </li>
+        {% else %}
+        <li class="reflection-item">Рефлексий пока нет.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
