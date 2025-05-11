@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Полив сирени</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f0f8;
+            color: #333;
+            padding: 2rem;
+        }
+        h1 {
+            color: #5e3b7f;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 1.5rem;
+        }
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background-color: #7e57c2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #6a43b1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Полей свой куст сирени</h1>
+    <p>Ответь честно на следующие вопросы перед поливом:</p>
+    <form method="POST">
+        {% for question in questions %}
+            <label for="q{{ loop.index0 }}">{{ question }}</label><br>
+            <textarea name="q{{ loop.index0 }}" id="q{{ loop.index0 }}" rows="3" cols="50" required></textarea><br><br>
+        {% endfor %}
+        <button type="submit">Я честно и осознанно ответил</button>
+    </form>
+</body>
+</html>

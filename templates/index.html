@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Сиреневый сад</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f3f0f9;
+            color: #333;
+            text-align: center;
+        }
+        .plant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem;
+        }
+        .plant-card {
+            background: #ffffffcc;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .plant-card h3 {
+            margin: 0.5rem 0;
+        }
+        .btn {
+            padding: 0.5rem 1rem;
+            background: #9b59b6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌸 Сиреневый сад 🌸</h1>
+
+    <form action="/plant" method="POST">
+        <input name="name" placeholder="Имя куста" required>
+        <input name="type" placeholder="Сорт сирени" required>
+        <input name="planted_by" placeholder="Ваше имя" required>
+        <button class="btn" type="submit">Посадить</button>
+    </form>
+
+    <div class="plant-grid">
+        {% for plant in plants %}
+        <div class="plant-card">
+            <h3>{{ plant[1] }}</h3>
+            <p>Сорт: {{ plant[2] }}</p>
+            <p>Посадил: {{ plant[3] }}</p>
+            <p>Стадия роста: {{ plant[4] }}</p>
+            <a class="btn" href="/water/{{ plant[0] }}">Полить</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
